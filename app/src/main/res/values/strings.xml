@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Never Lose Tic-Tac-Toe!</string>
+    <string name="title_activity_tic_tac_toe_help">TicTacToeHelp</string>
+</resources>
