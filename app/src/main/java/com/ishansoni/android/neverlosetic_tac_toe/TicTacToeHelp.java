@@ -31,6 +31,8 @@ public class TicTacToeHelp extends AppCompatActivity {
         playerCol = c;
     }
 
+    public void win() {}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
