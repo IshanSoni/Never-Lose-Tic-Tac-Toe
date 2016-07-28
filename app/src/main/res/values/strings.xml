@@ -3,4 +3,6 @@
     <string name="title_activity_tic_tac_toe_help">TicTacToeHelp</string>
     <string name="x">X</string>
     <string name="o">O</string>
+    <string name="hint">Move to</string>
+    <string name="enemy_pos">Where did the opponent move?</string>
 </resources>
