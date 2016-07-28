@@ -9,6 +9,7 @@ import android.widget.TextView;
 public class TicTacToeHelp extends AppCompatActivity {
     private Button[][] board;
     private TextView hint;
+    private TextView enemyPos;
     private int oppRow;
     private int oppCol;
     private int playerRow;
@@ -24,6 +25,7 @@ public class TicTacToeHelp extends AppCompatActivity {
 
     private void updatePlayerMove(int r, int c) {
         board[r][c].setText(R.string.x);
+        enemyPos.setText(R.string.enemy_pos);
         hint.setText("Move to "+ r + ", "+ c);
         playerRow = r;
         playerCol = c;
@@ -38,7 +40,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                                {(Button) findViewById(R.id.button5), (Button) findViewById(R.id.button), (Button) findViewById(R.id.button4)},
                                {(Button) findViewById(R.id.button8), (Button) findViewById(R.id.button3), (Button) findViewById(R.id.button9)}};
         hint = (TextView) findViewById(R.id.hint);
-
+        enemyPos = (TextView) findViewById(R.id.enemy_pos);
 
         playerGoesFirst();
 
