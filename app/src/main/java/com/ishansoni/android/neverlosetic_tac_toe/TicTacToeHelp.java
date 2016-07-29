@@ -3,11 +3,11 @@ package com.ishansoni.android.neverlosetic_tac_toe;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class TicTacToeHelp extends AppCompatActivity {
-    private Button[][] board;
+    private ImageButton[][] board;
     private TextView hint;
     private TextView enemyPos;
     private int oppRow;
@@ -16,15 +16,15 @@ public class TicTacToeHelp extends AppCompatActivity {
     private int playerCol;
 
     private void updateOpponentMove(int r, int c) {
-        if(board[r][c].getText().equals("")) {
+        //if(board[r][c].get().equals("")) {
             oppRow = r;
             oppCol = c;
-            board[oppRow][oppCol].setText(R.string.o);
-        }
+            //board[oppRow][oppCol].setText(R.string.o);
+        //}
     }
 
     private void updatePlayerMove(int r, int c) {
-        board[r][c].setText(R.string.x);
+        //board[r][c].setText(R.string.x);
         enemyPos.setText(R.string.enemy_pos);
         hint.setText("Move to "+ r + ", "+ c);
         playerRow = r;
@@ -38,9 +38,9 @@ public class TicTacToeHelp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tic_tac_toe_help);
 
-        board = new Button[][]{{(Button) findViewById(R.id.button6), (Button) findViewById(R.id.button2), (Button) findViewById(R.id.button7)},
-                               {(Button) findViewById(R.id.button5), (Button) findViewById(R.id.button), (Button) findViewById(R.id.button4)},
-                               {(Button) findViewById(R.id.button8), (Button) findViewById(R.id.button3), (Button) findViewById(R.id.button9)}};
+        board = new ImageButton[][]{{(ImageButton) findViewById(R.id.button6), (ImageButton) findViewById(R.id.button2), (ImageButton) findViewById(R.id.button7)},
+                               {(ImageButton) findViewById(R.id.button5), (ImageButton) findViewById(R.id.button), (ImageButton) findViewById(R.id.button4)},
+                               {(ImageButton) findViewById(R.id.button8), (ImageButton) findViewById(R.id.button3), (ImageButton) findViewById(R.id.button9)}};
         hint = (TextView) findViewById(R.id.hint);
         enemyPos = (TextView) findViewById(R.id.enemy_pos);
 
@@ -48,7 +48,7 @@ public class TicTacToeHelp extends AppCompatActivity {
 
     }
 
-    private void playerGoesFirst() {
+    private void playerGoesFirst() {  //sets up possiblities/counters if the player goes first
         updatePlayerMove(1,1);
         board[0][0].setOnClickListener(new View.OnClickListener() {
             @Override
