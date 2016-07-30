@@ -19,19 +19,23 @@ public class TicTacToeHelp extends AppCompatActivity {
         //if(board[r][c].get().equals("")) {
             oppRow = r;
             oppCol = c;
-            //board[oppRow][oppCol].setText(R.string.o);
+            board[oppRow][oppCol].setImageResource(R.drawable.o);
         //}
     }
 
     private void updatePlayerMove(int r, int c) {
-        //board[r][c].setText(R.string.x);
+        board[playerRow][playerCol].setImageResource(R.drawable.x);
+        board[r][c].setImageResource(R.drawable.here);
         enemyPos.setText(R.string.enemy_pos);
         hint.setText("Move to "+ r + ", "+ c);
         playerRow = r;
         playerCol = c;
     }
 
-    public void win() {}
+    public void win(int r, int c) {
+        board[r][c].setImageResource(R.drawable.win);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,9 @@ public class TicTacToeHelp extends AppCompatActivity {
 
     }
 
-    private void playerGoesFirst() {  //sets up possiblities/counters if the player goes first
+    private void playerGoesFirst() {//sets up possiblities/counters if the player goes first
+        playerRow = 1;
+        playerCol = 1;
         updatePlayerMove(1,1);
         board[0][0].setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,7 +123,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 0);
-                        //win 0,2
+                        win(0, 2); //win 0,2
                     }
                 });
 
@@ -125,7 +131,9 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 2);
-                        updatePlayerMove(0, 0); //win 1,0 or 2,2
+                        updatePlayerMove(0, 0);
+                        win(1,0);
+                        win(2, 2); //win 1,0 or 2,2
                     }
                 });
 
@@ -133,7 +141,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 0);
-                        //win 0,2
+                        win(0, 2); //win 0,2
                     }
                 });
 
@@ -141,7 +149,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 2);
-                        //win 0,2
+                        win(0, 2); //win 0,2
                     }
                 });
 
@@ -149,7 +157,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 2);
-                        //win 0,2
+                        win(0, 2); //win 0,2
                     }
                 });
 
@@ -157,7 +165,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 1);
-                        //win 0,2
+                        win(0, 2); //win 0,2
                     }
                 });
             }
@@ -181,7 +189,9 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 1);
-                        updatePlayerMove(0, 0); //win 1,0 or 2,2
+                        updatePlayerMove(0, 0);
+                        win(1, 0);
+                        win(2, 2); //win 1,0 or 2,2
                     }
                 });
 
@@ -189,7 +199,9 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 0);
-                        updatePlayerMove(2, 2); //win 0,0 or 2,1
+                        updatePlayerMove(2, 2);
+                        win(0, 0);
+                        win(2, 1); //win 0,0 or 2,1
                     }
                 });
 
@@ -197,7 +209,9 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 2);
-                        updatePlayerMove(2, 2); //win 0,0 or 2,1
+                        updatePlayerMove(2, 2);
+                        win(0, 0);
+                        win(2, 1); //win 0,0 or 2,1
                     }
                 });
 
@@ -205,7 +219,9 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 1);
-                        updatePlayerMove(0, 0); //win 1,0 or 2,2
+                        updatePlayerMove(0, 0);
+                        win(1, 0);
+                        win(2, 2); //win 1,0 or 2,2
                     }
                 });
 
@@ -230,7 +246,9 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 0);
-                        updatePlayerMove(2, 0); //win 0,2 or 2,1
+                        updatePlayerMove(2, 0);
+                        win(0, 2);
+                        win(2, 1); //win 0,2 or 2,1
                     }
                 });
 
@@ -238,7 +256,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 2);
-                        //win 0,0
+                        win(0, 0); //win 0,0
                     }
                 });
 
@@ -246,7 +264,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 1);
-                        //win 0,0
+                        win(0, 0); //win 0,0
                     }
                 });
 
@@ -254,7 +272,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 2);
-                        //win 0,0
+                        win(0, 0); //win 0,0
                     }
                 });
 
@@ -262,7 +280,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 0);
-                        //win 0,0
+                        win(0, 0); //win 0,0
                     }
                 });
 
@@ -270,7 +288,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 1);
-                        //win 0,0
+                        win(0, 0); //win 0,0
                     }
                 });
             }
@@ -286,7 +304,9 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 2);
-                        updatePlayerMove(0, 2); //win 0,1 or 2,0
+                        updatePlayerMove(0, 2);
+                        win(0, 1);
+                        win(2, 0); //win 0,1 or 2,0
                     }
                 });
 
@@ -294,7 +314,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 2);
-                        //win 2,2
+                        win(2, 2); //win 2,2
                     }
                 });
 
@@ -302,7 +322,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 1);
-                        //win 2,2
+                        win(2, 2); //win 2,2
                     }
                 });
 
@@ -310,7 +330,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 0);
-                        //win 2,2
+                        win(2, 2); //win 2,2
                     }
                 });
 
@@ -318,7 +338,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 0);
-                        //win 2,2
+                        win(2, 2); //win 2,2
                     }
                 });
 
@@ -326,7 +346,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 1);
-                        //win 2,2
+                        win(2, 2); //win 2,2
                     }
                 });
             }
