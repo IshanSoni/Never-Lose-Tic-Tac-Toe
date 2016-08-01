@@ -5,4 +5,5 @@
     <string name="o">O</string>
     <string name="hint">Move to</string>
     <string name="enemy_pos">Where did the opponent move?</string>
+    <string name="invalid_move">Invalid Move</string>
 </resources>

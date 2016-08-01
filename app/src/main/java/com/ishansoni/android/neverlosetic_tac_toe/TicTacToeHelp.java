@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class TicTacToeHelp extends AppCompatActivity {
     private ImageButton[][] board;
@@ -30,10 +31,28 @@ public class TicTacToeHelp extends AppCompatActivity {
         hint.setText("Move to "+ r + ", "+ c);
         playerRow = r;
         playerCol = c;
+
+        /* Sets all buttons to display "Invalid Move" when pressed, which
+           later allows all the used spots on the board to display that also. */
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                board[i][j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(TicTacToeHelp.this, R.string.invalid_move, Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     public void win(int r, int c) {
+
+        //disables all buttons
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                board[i][j].setOnClickListener(null);
+
         board[r][c].setImageResource(R.drawable.win);
+
 
     }
 
