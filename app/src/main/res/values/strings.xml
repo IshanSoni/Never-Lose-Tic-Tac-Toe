@@ -3,7 +3,8 @@
     <string name="title_activity_tic_tac_toe_help">TicTacToeHelp</string>
     <string name="x">X</string>
     <string name="o">O</string>
-    <string name="hint">Move to</string>
+    <string name="hint">Plan you next move at position </string>
+    <string name="hint_first_player">Always plan your first move at center, as indicated below</string>
     <string name="enemy_pos">Where did the opponent move?</string>
     <string name="invalid_move">Invalid Move</string>
 </resources>

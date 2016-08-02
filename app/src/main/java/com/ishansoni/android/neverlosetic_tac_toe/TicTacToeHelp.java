@@ -27,8 +27,8 @@ public class TicTacToeHelp extends AppCompatActivity {
     private void updatePlayerMove(int r, int c) {
         board[playerRow][playerCol].setImageResource(R.drawable.x);
         board[r][c].setImageResource(R.drawable.here);
-        enemyPos.setText(R.string.enemy_pos);
-        hint.setText("Move to "+ r + ", "+ c);
+        //enemyPos.setText(R.string.enemy_pos);
+        hint.setText("Plan your next move at position "+(r+1)+","+(c+1)+" (indicated below)");
         playerRow = r;
         playerCol = c;
 
@@ -71,10 +71,11 @@ public class TicTacToeHelp extends AppCompatActivity {
 
     }
 
-    private void playerGoesFirst() {//sets up possiblities/counters if the player goes first
+    private void playerGoesFirst() {  //sets up possiblities/counters if the player goes first
         playerRow = 1;
         playerCol = 1;
         updatePlayerMove(1,1);
+        hint.setText(R.string.hint_first_player);
         board[0][0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
