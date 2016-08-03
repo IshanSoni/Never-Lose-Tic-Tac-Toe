@@ -11,28 +11,28 @@ public class TicTacToeHelp extends AppCompatActivity {
     private ImageButton[][] board;
     private TextView hint;
     private TextView enemyPos;
+    private TextView enemyPosSpecify;
     private int oppRow;
     private int oppCol;
     private int playerRow;
     private int playerCol;
 
     private void updateOpponentMove(int r, int c) {
-        //if(board[r][c].get().equals("")) {
             oppRow = r;
             oppCol = c;
             board[oppRow][oppCol].setImageResource(R.drawable.o);
-        //}
     }
 
     private void updatePlayerMove(int r, int c) {
         board[playerRow][playerCol].setImageResource(R.drawable.x);
         board[r][c].setImageResource(R.drawable.here);
-        //enemyPos.setText(R.string.enemy_pos);
+        enemyPos.setText(R.string.enemy_pos);
+        enemyPosSpecify.setText(R.string.enemy_spec);
         hint.setText("Plan your next move at position "+(r+1)+","+(c+1)+" (indicated below)");
         playerRow = r;
         playerCol = c;
 
-        /* Sets all buttons to display "Invalid Move" when pressed, which
+        /* Sets all buttons to display warning message when pressed, which
            later allows all the used spots on the board to display that also. */
         for(int i = 0; i < 3; i++)
             for(int j = 0; j < 3; j++)
@@ -66,6 +66,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                                {(ImageButton) findViewById(R.id.button8), (ImageButton) findViewById(R.id.button3), (ImageButton) findViewById(R.id.button9)}};
         hint = (TextView) findViewById(R.id.hint);
         enemyPos = (TextView) findViewById(R.id.enemy_pos);
+        enemyPosSpecify = (TextView) findViewById(R.id.enemy_pos_spec);
 
         playerGoesFirst();
 

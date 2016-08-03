@@ -39,6 +39,7 @@
         android:layout_width="@dimen/box_size"
         android:layout_height="@dimen/box_size"
         android:id="@+id/button2"
+        android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:background="@android:color/white"
@@ -115,9 +116,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textStyle="bold"
         android:id="@+id/hint"
         android:gravity="center"
-        android:paddingTop="40dp"
+        android:paddingTop="15dp"
         android:paddingRight="20dp"
         android:paddingLeft="20dp"
         android:layout_alignParentTop="true"
@@ -126,8 +128,20 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
         android:id="@+id/enemy_pos"
-        android:layout_above="@id/button2"
+        android:textSize="17sp"
+        android:paddingTop="10dp"
+        android:layout_below="@id/hint"
+        android:gravity="center"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/enemy_pos_spec"
+        android:textSize="13sp"
+        android:layout_below="@id/enemy_pos"
         android:gravity="center"
         android:layout_centerHorizontal="true"/>
 

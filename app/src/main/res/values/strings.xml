@@ -6,5 +6,6 @@
     <string name="hint">Plan you next move at position </string>
     <string name="hint_first_player">Always plan your first move at center, as indicated below</string>
     <string name="enemy_pos">Where did the opponent move?</string>
-    <string name="invalid_move">Invalid Move</string>
+    <string name="enemy_spec">(Specify opponent\'s move below)</string>
+    <string name="invalid_move">Specify opponent\'s move</string>
 </resources>
