@@ -5,7 +5,12 @@
     <string name="o">O</string>
     <string name="hint">Plan you next move at position </string>
     <string name="hint_first_player">Always plan your first move at center, as indicated below</string>
-    <string name="enemy_pos">Where did the opponent move?</string>
+    <string name="enemy_pos">Where did the opponent move next?</string>
     <string name="enemy_spec">(Specify opponent\'s move below)</string>
     <string name="invalid_move">Specify opponent\'s move</string>
+    <string name="win">Trap your opponent and WIN the round!</string>
+    <string name="win_endorsed">Plan you next move on the indicated position to create winning opportunities next turn</string>
+    <string name="tie">It\'s a TIE</string>
+    <string name="tie_endorsed">Win not possible if the opponent moves at the corner twice</string>
+    <string name="tie_note">(Note: It is assumed that the opponent will preent player from winning next round.)</string>
 </resources>

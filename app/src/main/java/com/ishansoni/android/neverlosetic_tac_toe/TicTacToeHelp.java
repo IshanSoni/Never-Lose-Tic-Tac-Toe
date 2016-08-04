@@ -44,15 +44,28 @@ public class TicTacToeHelp extends AppCompatActivity {
                 });
     }
 
-    public void win(int r, int c) {
+    private void win(int r, int c) { //handles textview after a win
 
         //disables all buttons
         for(int i = 0; i < 3; i++)
             for(int j = 0; j < 3; j++)
                 board[i][j].setOnClickListener(null);
 
+        hint.setText(R.string.win);
+        enemyPos.setText(R.string.win_endorsed);
+        enemyPosSpecify.setText("");
         board[r][c].setImageResource(R.drawable.win);
+    }
 
+    private void tie() { //handles textview if the round is tie
+        //disables all buttons
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                board[i][j].setOnClickListener(null);
+
+        hint.setText(R.string.tie);
+        enemyPos.setText(R.string.tie_endorsed);
+        enemyPosSpecify.setText(R.string.tie_note);
 
     }
 
@@ -97,7 +110,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 2);
-                        updatePlayerMove(0, 1); //tie
+                        updatePlayerMove(0, 1);
+                        tie(); //tie
                     }
                 });
 
@@ -125,7 +139,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 0);
-                        updatePlayerMove(1, 0); //tie
+                        updatePlayerMove(1, 0);
+                        tie(); //tie
                     }
                 });
 
@@ -210,7 +225,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 0);
-                        updatePlayerMove(0, 1); //tie
+                        updatePlayerMove(0, 1);
+                        tie(); //tie
                     }
                 });
 
@@ -258,7 +274,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 2);
-                        updatePlayerMove(1, 2); //tie
+                        updatePlayerMove(1, 2);
+                        tie(); //tie
                     }
                 });
 
@@ -391,7 +408,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 0);
-                        updatePlayerMove(1, 0); //tie
+                        updatePlayerMove(1, 0);
+                        tie(); //tie
                     }
                 });
 
@@ -439,7 +457,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 2);
-                        updatePlayerMove(2, 1); //tie
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
                     }
                 });
 
@@ -524,7 +543,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 2);
-                        updatePlayerMove(1, 2); //tie
+                        updatePlayerMove(1, 2);
+                        tie(); //tie
                     }
                 });
 
@@ -552,7 +572,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 0);
-                        updatePlayerMove(2, 1); //tie
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
                     }
                 });
 
