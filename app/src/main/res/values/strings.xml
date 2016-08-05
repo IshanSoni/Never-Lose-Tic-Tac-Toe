@@ -12,5 +12,5 @@
     <string name="win_endorsed">Plan you next move on the indicated position to create winning opportunities next turn</string>
     <string name="tie">It\'s a TIE</string>
     <string name="tie_endorsed">Win not possible if the opponent moves at the corner twice</string>
-    <string name="tie_note">(Note: It is assumed that the opponent will preent player from winning next round.)</string>
+    <string name="tie_note">Keep blocking until you reach a tie</string>
 </resources>

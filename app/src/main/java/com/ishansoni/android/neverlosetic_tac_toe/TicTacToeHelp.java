@@ -14,8 +14,8 @@ public class TicTacToeHelp extends AppCompatActivity {
     private TextView enemyPosSpecify;
     private int oppRow;
     private int oppCol;
-    private int playerRow;
-    private int playerCol;
+    private Integer playerRow;
+    private Integer playerCol;
 
     private void updateOpponentMove(int r, int c) {
             oppRow = r;
@@ -81,7 +81,8 @@ public class TicTacToeHelp extends AppCompatActivity {
         enemyPos = (TextView) findViewById(R.id.enemy_pos);
         enemyPosSpecify = (TextView) findViewById(R.id.enemy_pos_spec);
 
-        playerGoesFirst();
+        opponentGoesFirst();
+
 
     }
 
@@ -590,6 +591,429 @@ public class TicTacToeHelp extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void opponentGoesFirst() {   //sets up possibilities if the opponent goes first
+
+
+        board[1][1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 2;
+                playerCol = 0;
+                updateOpponentMove(1, 1);
+                updatePlayerMove(2, 0);
+
+                board[0][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 0);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 1);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 2);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 0);
+                        updatePlayerMove(1, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 2);
+                        updatePlayerMove(1, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 0);
+                        updatePlayerMove(0, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 1);
+                        updatePlayerMove(0, 0);
+                        tie(); //tie
+                    }
+                });
+
+            }
+        });
+
+        board[0][0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
+                updateOpponentMove(0, 0);
+                updatePlayerMove(1, 1);
+
+                board[0][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 1);
+                        updatePlayerMove(0, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 2);
+                        updatePlayerMove(0, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 0);
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 2);
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 0);
+                        updatePlayerMove(1, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 1);
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 2);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
+                    }
+                });
+
+            }
+        });
+
+        board[0][1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
+                updateOpponentMove(0, 1);
+                updatePlayerMove(1, 1);
+
+                tie(); //tie
+            }
+        });
+
+        board[0][2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
+                updateOpponentMove(0, 2);
+                updatePlayerMove(1, 1);
+
+                board[0][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 0);
+                        updatePlayerMove(0, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 1);
+                        updatePlayerMove(0, 0);
+                        tie(); //tie
+                    }
+                });
+
+
+                board[1][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 0);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 2);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 0);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 1);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 2);
+                        updatePlayerMove(1, 2);
+                        tie(); //tie
+                    }
+                });
+
+            }
+        });
+
+        board[1][0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
+                updateOpponentMove(1, 0);
+                updatePlayerMove(1, 1);
+
+                tie(); //tie
+            }
+        });
+
+        board[1][2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
+                updateOpponentMove(1, 2);
+                updatePlayerMove(0, 0);
+
+                tie(); //tie
+            }
+        });
+
+        board[2][0].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
+                updateOpponentMove(2, 0);
+                updatePlayerMove(1, 1);
+
+                board[0][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 0);
+                        updatePlayerMove(1, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 1);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 2);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 0);
+                        updatePlayerMove(0, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 2);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 1);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 2);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
+                    }
+                });
+
+            }
+        });
+
+        board[2][1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
+                updateOpponentMove(2, 1);
+                updatePlayerMove(1, 1);
+
+                tie(); //tie
+            }
+        });
+
+        board[2][2].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
+                updateOpponentMove(2, 2);
+                updatePlayerMove(1, 1);
+
+                board[0][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 0);
+                        updatePlayerMove(0, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 1);
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 2);
+                        updatePlayerMove(1, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 0);
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 2);
+                        updatePlayerMove(0, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 1);
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 0);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
+                    }
+                });
+
+            }
+        });
     }
 
 }
