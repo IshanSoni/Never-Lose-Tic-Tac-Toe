@@ -11,6 +11,14 @@
     <string name="win">Trap your opponent and WIN the round!</string>
     <string name="win_endorsed">Plan you next move on the indicated position to create winning opportunities next turn</string>
     <string name="tie">It\'s a TIE</string>
-    <string name="tie_endorsed">Win not possible if the opponent moves at the corner twice</string>
+    <string name="tie_endorsed">Winning is not possible if the opponent moves at the corner twice</string>
     <string name="tie_note">Keep blocking until you reach a tie</string>
+    <string name="hint_first_opponent">If your opponent goes first, winning is not possible.</string>
+    <string name="enemy_pos_first">(Strategy: Avoid any enemy traps and block until you reach a tie)\nWhere did the opponent move first? (Tap below)</string>
+    <string name="tie_opp">Keep blocking until you reach a tie</string>
+    <string name="tie_opp_note">The opponent can not set any traps at this point</string>
+    <string name="tie_opp_edge">Secure the center to force a tie</string>
+    <string name="tie_opp_edge_endorsed">Planning your next move at center will also prevent your opponent from setting any traps</string>
+    <string name="tie_opp_edge_note">Keep blocking until you reach a tie</string>
+    <string name="tie_toast">Keep blocking until you reach a tie</string>
 </resources>

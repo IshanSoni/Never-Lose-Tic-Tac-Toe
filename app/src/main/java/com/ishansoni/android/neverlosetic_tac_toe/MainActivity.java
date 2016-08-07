@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, TicTacToeHelp.class);
+                Intent i = new Intent(MainActivity.this, TicTacToeOpp.class);
                 startActivity(i);
             }
         });
