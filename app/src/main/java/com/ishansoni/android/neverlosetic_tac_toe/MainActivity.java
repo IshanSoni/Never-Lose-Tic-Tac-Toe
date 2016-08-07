@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 else {
                     Toast.makeText(MainActivity.this, "Please select who goes first", Toast.LENGTH_SHORT).show();
                 }
+                buttons.clearCheck();
             }
         });
 

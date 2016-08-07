@@ -29,32 +29,31 @@
         android:layout_below="@+id/radio_group"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="76dp"/>
-<RadioGroup
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:id="@+id/radio_group"
-    android:layout_centerVertical="true"
-    android:layout_centerHorizontal="true">
 
-    <RadioButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Opponent"
-    android:id="@+id/enemy_button"
-    android:layout_centerVertical="true"
-    android:layout_toRightOf="@+id/start"
-    android:layout_toEndOf="@+id/start"/>
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/radio_group"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true">
 
-    <RadioButton
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:text="Player"
-    android:id="@+id/player_button"
-    android:paddingRight="50dp"
-    android:layout_alignTop="@+id/enemy_button"
-    android:layout_alignRight="@+id/imageView"
-    android:layout_alignEnd="@+id/imageView"/>
-</RadioGroup>
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Player"
+            android:paddingRight="50dp"
+            android:id="@+id/player_button"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Opponent"
+            android:id="@+id/enemy_button"
+            />
+
+    </RadioGroup>
 
 
 </RelativeLayout>
