@@ -18,30 +18,43 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"/>
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton"
-        android:layout_alignTop="@+id/radioButton2"
-        android:layout_toLeftOf="@+id/imageView"
-        android:layout_toStartOf="@+id/imageView"/>
 
-    <RadioButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton2"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView"/>
+
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Button"
-        android:id="@+id/button10"
-        android:layout_below="@+id/radioButton"
+        android:text="Start"
+        android:id="@+id/start"
+        android:layout_below="@+id/radio_group"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="76dp"/>
+<RadioGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/radio_group"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true">
+
+    <RadioButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Opponent"
+    android:id="@+id/enemy_button"
+    android:layout_centerVertical="true"
+    android:layout_toRightOf="@+id/start"
+    android:layout_toEndOf="@+id/start"/>
+
+    <RadioButton
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Player"
+    android:id="@+id/player_button"
+    android:paddingRight="50dp"
+    android:layout_alignTop="@+id/enemy_button"
+    android:layout_alignRight="@+id/imageView"
+    android:layout_alignEnd="@+id/imageView"/>
+</RadioGroup>
+
+
 </RelativeLayout>
