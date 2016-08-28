@@ -5,6 +5,8 @@
     <string name="o">O</string>
     <string name="here">"Move\nX\nhere"</string>
     <string name="win_here">"X\nWin"</string>
+    <string name="win_t">Win next turn!</string>
+    <string name="tie_t">It\'s a tie</string>
     <string name="hint">Plan your next move at position </string>
     <string name="hint_first_player">Always plan your first move at center, as indicated below</string>
     <string name="enemy_pos">Where did the opponent move next?</string>

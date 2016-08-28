@@ -1,6 +1,7 @@
 
 package com.ishansoni.android.neverlosetic_tac_toe;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,14 +28,17 @@ public class TicTacToeOpp extends AppCompatActivity {
         oppCol = c;
         board[oppRow][oppCol].setText(R.string.o);
         setFont(board[r][c].getId());
+        board[r][c].setTextColor(Color.BLUE);
     }
 
     private void updatePlayerMove(int r, int c) {
         setFont(board[r][c].getId());
 
+        board[playerRow][playerCol].setTextColor(Color.BLUE);
         board[playerRow][playerCol].setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
         board[playerRow][playerCol].setText(R.string.x);
 
+        board[r][c].setTextColor(Color.RED);
         board[r][c].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         board[r][c].setText(R.string.here);
 

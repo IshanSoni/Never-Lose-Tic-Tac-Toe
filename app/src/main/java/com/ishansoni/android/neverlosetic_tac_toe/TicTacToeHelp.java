@@ -1,5 +1,6 @@
 package com.ishansoni.android.neverlosetic_tac_toe;
 
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -25,15 +26,18 @@ public class TicTacToeHelp extends AppCompatActivity {
         oppRow = r;
         oppCol = c;
         board[oppRow][oppCol].setText(R.string.o);
+        board[r][c].setTextColor(Color.BLUE);
         setFont(board[r][c].getId());
     }
 
     private void updatePlayerMove(int r, int c) {
         setFont(board[r][c].getId());
 
+        board[playerRow][playerCol].setTextColor(Color.BLUE);
         board[playerRow][playerCol].setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
         board[playerRow][playerCol].setText(R.string.x);
 
+        board[r][c].setTextColor(Color.RED);
         board[r][c].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         board[r][c].setText(R.string.here);
 
@@ -57,24 +61,41 @@ public class TicTacToeHelp extends AppCompatActivity {
 
     private void win(int r, int c) { //handles textview after a win
 
-        //disables all buttons
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++)
-                board[i][j].setOnClickListener(null);
-
         hint.setText(R.string.win);
         enemyPos.setText(R.string.win_endorsed);
         enemyPosSpecify.setText("");
         setFont(board[r][c].getId());
         board[r][c].setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
+        board[r][c].setTextColor(Color.GREEN);
         board[r][c].setText(R.string.win_here);
+        board[r][c].setBackgroundColor(0xFFFFFF80);
+
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++) {
+                if (board[i][j].getText().equals(getString(R.string.x)) ||
+                    board[i][j].getText().equals(getString(R.string.here)))
+                    board[i][j].setBackgroundColor(0xFFFFFF80);
+
+                board[i][j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                     Toast.makeText(TicTacToeHelp.this, R.string.win_t, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
     }
 
     private void tie() { //handles textview if the round is tie
         //disables all buttons
         for(int i = 0; i < 3; i++)
             for(int j = 0; j < 3; j++)
-                board[i][j].setOnClickListener(null);
+                board[i][j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(TicTacToeHelp.this, R.string.tie_t, Toast.LENGTH_SHORT).show();
+                    }
+                });
 
         hint.setText(R.string.tie);
         enemyPos.setText(R.string.tie_endorsed);
