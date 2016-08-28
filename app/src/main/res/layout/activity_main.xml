@@ -11,16 +11,6 @@
     tools:context="com.ishansoni.android.neverlosetic_tac_toe.MainActivity">
 
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/imageView"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"/>
-
-
-
-
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -54,6 +44,60 @@
             />
 
     </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Who will go first?"
+        android:paddingBottom="15dp"
+        android:textSize="40sp"
+        android:id="@+id/first_player"
+        android:layout_above="@+id/radio_group"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="TIC-TAC-TOE"
+        android:textSize="70sp"
+        android:id="@+id/logo_1"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Assist Tool"
+        android:textSize="50sp"
+        android:id="@+id/logo_2"
+        android:layout_below="@+id/logo_1"
+        android:layout_centerHorizontal="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Results in a win\n70% of the time"
+        android:paddingLeft="50dp"
+        android:id="@+id/player_win"
+        android:textSize="20sp"
+        android:layout_below="@+id/radio_group"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="  Results in a tie\n100% of the time"
+        android:paddingRight="50dp"
+        android:textSize="20sp"
+        android:id="@+id/opp_tie"
+        android:layout_below="@+id/radio_group"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
 
 </RelativeLayout>

@@ -1,6 +1,7 @@
 package com.ishansoni.android.neverlosetic_tac_toe;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,6 +9,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +23,23 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/Rancho-Regular.ttf");
+
+        TextView myTextView=(TextView)findViewById(R.id.first_player);
+        myTextView.setTypeface(typeFace);
+
+        myTextView=(TextView)findViewById(R.id.logo_1);
+        myTextView.setTypeface(typeFace);
+
+        myTextView=(TextView)findViewById(R.id.logo_2);
+        myTextView.setTypeface(typeFace);
+
+        myTextView=(TextView)findViewById(R.id.player_win);
+        myTextView.setTypeface(typeFace);
+
+        myTextView=(TextView)findViewById(R.id.opp_tie);
+        myTextView.setTypeface(typeFace);
 
         buttons = (RadioGroup) findViewById(R.id.radio_group);
         buttons.clearCheck();
@@ -43,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         });
 
         start = (Button)findViewById(R.id.start);
+        myTextView=(TextView)findViewById(R.id.start);
+        myTextView.setTypeface(typeFace);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

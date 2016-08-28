@@ -1,15 +1,17 @@
 
 package com.ishansoni.android.neverlosetic_tac_toe;
 
-        import android.os.Bundle;
-        import android.support.v7.app.AppCompatActivity;
-        import android.view.View;
-        import android.widget.ImageButton;
-        import android.widget.TextView;
-        import android.widget.Toast;
+import android.graphics.Typeface;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.util.TypedValue;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class TicTacToeOpp extends AppCompatActivity {
-    private ImageButton[][] board;
+    private Button[][] board;
     private TextView hint;
     private TextView enemyPos;
     private TextView enemyPosSpecify;
@@ -17,19 +19,28 @@ public class TicTacToeOpp extends AppCompatActivity {
     private int oppCol;
     private Integer playerRow;
     private Integer playerCol;
+    private Typeface typeFace;
+    private TextView myTextView;
 
     private void updateOpponentMove(int r, int c) {
         oppRow = r;
         oppCol = c;
-        board[oppRow][oppCol].setImageResource(R.drawable.o);
+        board[oppRow][oppCol].setText(R.string.o);
+        setFont(board[r][c].getId());
     }
 
     private void updatePlayerMove(int r, int c) {
-        board[playerRow][playerCol].setImageResource(R.drawable.x);
-        board[r][c].setImageResource(R.drawable.here);
+        setFont(board[r][c].getId());
+
+        board[playerRow][playerCol].setTextSize(TypedValue.COMPLEX_UNIT_SP, 50);
+        board[playerRow][playerCol].setText(R.string.x);
+
+        board[r][c].setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        board[r][c].setText(R.string.here);
+
         enemyPos.setText(R.string.enemy_pos);
-        enemyPosSpecify.setText(R.string.enemy_spec);
-        hint.setText("Plan your next move at position "+(r+1)+","+(c+1)+"(indicated below) to avoid any possible traps");
+        //enemyPosSpecify.setText(R.string.enemy_spec);
+        hint.setText("Plan your next move at position "+(r+1)+","+(c+1)+" (indicated below) to avoid any possible traps");
         playerRow = r;
         playerCol = c;
 
@@ -78,20 +89,31 @@ public class TicTacToeOpp extends AppCompatActivity {
         enemyPosSpecify.setText(R.string.tie_opp_edge_note);
     }
 
+    private void setFont(int id) {
+        typeFace= Typeface.createFromAsset(getAssets(),"fonts/Rancho-Regular.ttf");
+
+        myTextView=(TextView)findViewById(id);
+        myTextView.setTypeface(typeFace);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tic_tac_toe_help);
 
-        board = new ImageButton[][]{{(ImageButton) findViewById(R.id.button6), (ImageButton) findViewById(R.id.button2), (ImageButton) findViewById(R.id.button7)},
-                {(ImageButton) findViewById(R.id.button5), (ImageButton) findViewById(R.id.button), (ImageButton) findViewById(R.id.button4)},
-                {(ImageButton) findViewById(R.id.button8), (ImageButton) findViewById(R.id.button3), (ImageButton) findViewById(R.id.button9)}};
+        board = new Button[][]{{(Button) findViewById(R.id.button6), (Button) findViewById(R.id.button2), (Button) findViewById(R.id.button7)},
+                {(Button) findViewById(R.id.button5), (Button) findViewById(R.id.button), (Button) findViewById(R.id.button4)},
+                {(Button) findViewById(R.id.button8), (Button) findViewById(R.id.button3), (Button) findViewById(R.id.button9)}};
+
         hint = (TextView) findViewById(R.id.hint);
         enemyPos = (TextView) findViewById(R.id.enemy_pos);
         enemyPosSpecify = (TextView) findViewById(R.id.enemy_pos_spec);
 
-        opponentGoesFirst();
+        setFont(R.id.hint);
+        setFont(R.id.enemy_pos);
+        setFont(R.id.enemy_pos_spec);
 
+        opponentGoesFirst();
 
     }
 
