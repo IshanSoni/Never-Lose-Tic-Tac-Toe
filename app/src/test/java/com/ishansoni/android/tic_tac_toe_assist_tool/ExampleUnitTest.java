@@ -1,4 +1,4 @@
-package com.ishansoni.android.neverlosetic_tac_toe;
+package com.ishansoni.android.tic_tac_toe_assist_tool;
 
 import org.junit.Test;
 

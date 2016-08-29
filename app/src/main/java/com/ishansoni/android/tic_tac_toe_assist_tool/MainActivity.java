@@ -1,4 +1,4 @@
-package com.ishansoni.android.neverlosetic_tac_toe;
+package com.ishansoni.android.tic_tac_toe_assist_tool;
 
 import android.content.Intent;
 import android.graphics.Typeface;
@@ -12,17 +12,28 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
+
 public class MainActivity extends AppCompatActivity {
     private RadioGroup buttons;
     private RadioButton player;
     private RadioButton opponent;
     private Button start;
     private int choice = 0;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-4117140826445508/2240462267");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         Typeface typeFace= Typeface.createFromAsset(getAssets(),"fonts/Rancho-Regular.ttf");
 

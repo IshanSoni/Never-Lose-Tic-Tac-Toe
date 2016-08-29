@@ -5,7 +5,7 @@ android {
     buildToolsVersion "24.0.0"
 
     defaultConfig {
-        applicationId "com.ishansoni.android.neverlosetic_tac_toe"
+        applicationId "com.ishansoni.android.tic_tac_toe_assist_tool"
         minSdkVersion 16
         targetSdkVersion 24
         versionCode 1
@@ -24,4 +24,9 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.0.0'
     compile 'com.android.support:design:24.0.0'
+    compile 'com.google.firebase:firebase-ads:9.4.0'
 }
+
+apply plugin: 'com.google.gms.google-services'
+
+

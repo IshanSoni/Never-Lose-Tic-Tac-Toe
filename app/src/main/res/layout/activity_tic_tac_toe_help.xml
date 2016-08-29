@@ -7,7 +7,7 @@
     android:gravity="center"
     android:background="@android:color/white"
     android:orientation="vertical"
-    tools:context="com.ishansoni.android.neverlosetic_tac_toe.TicTacToeHelp">
+    tools:context="com.ishansoni.android.tic_tac_toe_assist_tool.TicTacToeHelp">
 
 
     <ImageView

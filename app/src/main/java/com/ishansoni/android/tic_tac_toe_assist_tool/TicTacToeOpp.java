@@ -1,4 +1,5 @@
-package com.ishansoni.android.neverlosetic_tac_toe;
+
+package com.ishansoni.android.tic_tac_toe_assist_tool;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -10,7 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class TicTacToeHelp extends AppCompatActivity {
+public class TicTacToeOpp extends AppCompatActivity {
     private Button[][] board;
     private TextView hint;
     private TextView enemyPos;
@@ -26,8 +27,8 @@ public class TicTacToeHelp extends AppCompatActivity {
         oppRow = r;
         oppCol = c;
         board[oppRow][oppCol].setText(R.string.o);
-        board[r][c].setTextColor(Color.BLUE);
         setFont(board[r][c].getId());
+        board[r][c].setTextColor(Color.BLUE);
     }
 
     private void updatePlayerMove(int r, int c) {
@@ -42,8 +43,8 @@ public class TicTacToeHelp extends AppCompatActivity {
         board[r][c].setText(R.string.here);
 
         enemyPos.setText(R.string.enemy_pos);
-        enemyPosSpecify.setText(R.string.enemy_spec);
-        hint.setText("Plan your next move at position "+(r+1)+","+(c+1)+" (indicated below)");
+        //enemyPosSpecify.setText(R.string.enemy_spec);
+        hint.setText("Plan your next move at position "+(r+1)+","+(c+1)+" (indicated below) to avoid any possible traps");
         playerRow = r;
         playerCol = c;
 
@@ -54,36 +55,9 @@ public class TicTacToeHelp extends AppCompatActivity {
                 board[i][j].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(TicTacToeHelp.this, R.string.invalid_move, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TicTacToeOpp.this, R.string.invalid_move, Toast.LENGTH_SHORT).show();
                     }
                 });
-    }
-
-    private void win(int r, int c) { //handles textview after a win
-
-        hint.setText(R.string.win);
-        enemyPos.setText(R.string.win_endorsed);
-        enemyPosSpecify.setText("");
-        setFont(board[r][c].getId());
-        board[r][c].setTextSize(TypedValue.COMPLEX_UNIT_SP, 30);
-        board[r][c].setTextColor(Color.GREEN);
-        board[r][c].setText(R.string.win_here);
-        board[r][c].setBackgroundColor(0xFFFFFF80);
-
-        for(int i = 0; i < 3; i++)
-            for(int j = 0; j < 3; j++) {
-                if (board[i][j].getText().equals(getString(R.string.x)) ||
-                    board[i][j].getText().equals(getString(R.string.here)))
-                    board[i][j].setBackgroundColor(0xFFFFFF80);
-
-                board[i][j].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                     Toast.makeText(TicTacToeHelp.this, R.string.win_t, Toast.LENGTH_SHORT).show();
-                    }
-                });
-            }
-
     }
 
     private void tie() { //handles textview if the round is tie
@@ -93,13 +67,30 @@ public class TicTacToeHelp extends AppCompatActivity {
                 board[i][j].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(TicTacToeHelp.this, R.string.tie_t, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TicTacToeOpp.this, R.string.tie_toast, Toast.LENGTH_SHORT).show();
                     }
                 });
 
         hint.setText(R.string.tie);
-        enemyPos.setText(R.string.tie_endorsed);
-        enemyPosSpecify.setText(R.string.tie_note);
+        enemyPos.setText(R.string.tie_opp);
+        enemyPosSpecify.setText(R.string.tie_opp_note);
+
+    }
+
+    private void tieEdge() { //handles textview if the opponent moves edge
+        //disables all buttons
+        for(int i = 0; i < 3; i++)
+            for(int j = 0; j < 3; j++)
+                board[i][j].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(TicTacToeOpp.this, R.string.tie_toast, Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        hint.setText(R.string.tie_opp_edge);
+        enemyPos.setText(R.string.tie_opp_edge_endorsed);
+        enemyPosSpecify.setText(R.string.tie_opp_edge_note);
     }
 
     private void setFont(int id) {
@@ -115,8 +106,9 @@ public class TicTacToeHelp extends AppCompatActivity {
         setContentView(R.layout.activity_tic_tac_toe_help);
 
         board = new Button[][]{{(Button) findViewById(R.id.button6), (Button) findViewById(R.id.button2), (Button) findViewById(R.id.button7)},
-                               {(Button) findViewById(R.id.button5), (Button) findViewById(R.id.button), (Button) findViewById(R.id.button4)},
-                               {(Button) findViewById(R.id.button8), (Button) findViewById(R.id.button3), (Button) findViewById(R.id.button9)}};
+                {(Button) findViewById(R.id.button5), (Button) findViewById(R.id.button), (Button) findViewById(R.id.button4)},
+                {(Button) findViewById(R.id.button8), (Button) findViewById(R.id.button3), (Button) findViewById(R.id.button9)}};
+
         hint = (TextView) findViewById(R.id.hint);
         enemyPos = (TextView) findViewById(R.id.enemy_pos);
         enemyPosSpecify = (TextView) findViewById(R.id.enemy_pos_spec);
@@ -125,29 +117,101 @@ public class TicTacToeHelp extends AppCompatActivity {
         setFont(R.id.enemy_pos);
         setFont(R.id.enemy_pos_spec);
 
-        playerGoesFirst();
-
+        opponentGoesFirst();
 
     }
 
-    private void playerGoesFirst() {  //sets up possiblities/counters if the player goes first
-        playerRow = 1;
-        playerCol = 1;
-        updatePlayerMove(1,1);
-        hint.setText(R.string.hint_first_player);
+    private void opponentGoesFirst() {   //sets up possibilities if the opponent goes first
+        hint.setText(R.string.hint_first_opponent);
+        enemyPos.setText(R.string.enemy_pos_first);
+        board[1][1].setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                playerRow = 2;
+                playerCol = 0;
+                updateOpponentMove(1, 1);
+                updatePlayerMove(2, 0);
+
+                board[0][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 0);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 1);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[0][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 2);
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 0);
+                        updatePlayerMove(1, 2);
+                        tie(); //tie
+                    }
+                });
+
+                board[1][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(1, 2);
+                        updatePlayerMove(1, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 1);
+                        updatePlayerMove(0, 1);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 2);
+                        updatePlayerMove(0, 0);
+                        tie(); //tie
+                    }
+                });
+
+            }
+        });
+
         board[0][0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
                 updateOpponentMove(0, 0);
-                updatePlayerMove(2, 2);
+                updatePlayerMove(1, 1);
 
                 board[0][1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 1);
                         updatePlayerMove(0, 2);
-                        win(1, 2);
-                        win(2, 0); //win 1,2 or 2,0
+                        tie(); //tie
                     }
                 });
 
@@ -165,8 +229,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     public void onClick(View view) {
                         updateOpponentMove(1, 0);
                         updatePlayerMove(2, 0);
-                        win(0, 2);
-                        win(2, 1); //win 0,2 or 2,1
+                        tie(); //tie
                     }
                 });
 
@@ -175,8 +238,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     public void onClick(View view) {
                         updateOpponentMove(1, 2);
                         updatePlayerMove(2, 0);
-                        win(0, 2);
-                        win(2, 1); //win 0,2 or 2,1
+                        tie(); //tie
                     }
                 });
 
@@ -193,9 +255,17 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 1);
-                        updatePlayerMove(0, 2);
-                        win(1, 2);
-                        win(2, 0); //win 1,2 or 2,0
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
+                    }
+                });
+
+                board[2][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 2);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
                     }
                 });
 
@@ -205,66 +275,22 @@ public class TicTacToeHelp extends AppCompatActivity {
         board[0][1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
                 updateOpponentMove(0, 1);
-                updatePlayerMove(2, 0);
+                updatePlayerMove(1, 1);
 
-                board[0][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 0);
-                        win(0, 2); //win 0,2
-                    }
-                });
-
-                board[0][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 2);
-                        updatePlayerMove(0, 0);
-                        win(1,0);
-                        win(2, 2); //win 1,0 or 2,2
-                    }
-                });
-
-                board[1][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(1, 0);
-                        win(0, 2); //win 0,2
-                    }
-                });
-
-                board[1][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(1, 2);
-                        win(0, 2); //win 0,2
-                    }
-                });
-
-                board[2][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 2);
-                        win(0, 2); //win 0,2
-                    }
-                });
-
-                board[2][1].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 1);
-                        win(0, 2); //win 0,2
-                    }
-                });
+                tieEdge(); //tie
             }
         });
 
         board[0][2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
                 updateOpponentMove(0, 2);
-                updatePlayerMove(2, 0);
+                updatePlayerMove(1, 1);
 
                 board[0][0].setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -280,18 +306,17 @@ public class TicTacToeHelp extends AppCompatActivity {
                     public void onClick(View view) {
                         updateOpponentMove(0, 1);
                         updatePlayerMove(0, 0);
-                        win(1, 0);
-                        win(2, 2); //win 1,0 or 2,2
+                        tie(); //tie
                     }
                 });
+
 
                 board[1][0].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 0);
                         updatePlayerMove(2, 2);
-                        win(0, 0);
-                        win(2, 1); //win 0,0 or 2,1
+                        tie(); //tie
                     }
                 });
 
@@ -300,8 +325,16 @@ public class TicTacToeHelp extends AppCompatActivity {
                     public void onClick(View view) {
                         updateOpponentMove(1, 2);
                         updatePlayerMove(2, 2);
-                        win(0, 0);
-                        win(2, 1); //win 0,0 or 2,1
+                        tie(); //tie
+                    }
+                });
+
+                board[2][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 0);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
                     }
                 });
 
@@ -309,9 +342,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(2, 1);
-                        updatePlayerMove(0, 0);
-                        win(1, 0);
-                        win(2, 2); //win 1,0 or 2,2
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
                     }
                 });
 
@@ -330,124 +362,34 @@ public class TicTacToeHelp extends AppCompatActivity {
         board[1][0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
                 updateOpponentMove(1, 0);
-                updatePlayerMove(2, 2);
+                updatePlayerMove(1, 1);
 
-                board[0][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 0);
-                        updatePlayerMove(2, 0);
-                        win(0, 2);
-                        win(2, 1); //win 0,2 or 2,1
-                    }
-                });
-
-                board[0][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 2);
-                        win(0, 0); //win 0,0
-                    }
-                });
-
-                board[0][1].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 1);
-                        win(0, 0); //win 0,0
-                    }
-                });
-
-                board[1][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(1, 2);
-                        win(0, 0); //win 0,0
-                    }
-                });
-
-                board[2][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 0);
-                        win(0, 0); //win 0,0
-                    }
-                });
-
-                board[2][1].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 1);
-                        win(0, 0); //win 0,0
-                    }
-                });
+                tieEdge(); //tie
             }
         });
 
         board[1][2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
                 updateOpponentMove(1, 2);
                 updatePlayerMove(0, 0);
 
-                board[2][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 2);
-                        updatePlayerMove(0, 2);
-                        win(0, 1);
-                        win(2, 0); //win 0,1 or 2,0
-                    }
-                });
-
-                board[0][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 2);
-                        win(2, 2); //win 2,2
-                    }
-                });
-
-                board[0][1].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 1);
-                        win(2, 2); //win 2,2
-                    }
-                });
-
-                board[1][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(1, 0);
-                        win(2, 2); //win 2,2
-                    }
-                });
-
-                board[2][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 0);
-                        win(2, 2); //win 2,2
-                    }
-                });
-
-                board[2][1].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 1);
-                        win(2, 2); //win 2,2
-                    }
-                });
+                tieEdge(); //tie
             }
         });
 
         board[2][0].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
                 updateOpponentMove(2, 0);
-                updatePlayerMove(0, 2);
+                updatePlayerMove(1, 1);
 
                 board[0][0].setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -463,8 +405,16 @@ public class TicTacToeHelp extends AppCompatActivity {
                     public void onClick(View view) {
                         updateOpponentMove(0, 1);
                         updatePlayerMove(2, 2);
-                        win(0, 0);
-                        win(1, 2); //win 0,0 or 1,2
+                        tie(); //tie
+                    }
+                });
+
+                board[0][2].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 2);
+                        updatePlayerMove(2, 1);
+                        tie(); //tie
                     }
                 });
 
@@ -473,8 +423,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     public void onClick(View view) {
                         updateOpponentMove(1, 0);
                         updatePlayerMove(0, 0);
-                        win(0, 1);
-                        win(2, 2); //win 0,1 or 2,2
+                        tie(); //tie
                     }
                 });
 
@@ -482,9 +431,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 2);
-                        updatePlayerMove(0, 0);
-                        win(0, 1);
-                        win(2, 2); //win 0,1 or 2,2
+                        updatePlayerMove(2, 2);
+                        tie(); //tie
                     }
                 });
 
@@ -493,8 +441,7 @@ public class TicTacToeHelp extends AppCompatActivity {
                     public void onClick(View view) {
                         updateOpponentMove(2, 1);
                         updatePlayerMove(2, 2);
-                        win(0, 0);
-                        win(1, 2); //win 0,0 or 1,2
+                        tie(); //tie
                     }
                 });
 
@@ -513,74 +460,38 @@ public class TicTacToeHelp extends AppCompatActivity {
         board[2][1].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
                 updateOpponentMove(2, 1);
-                updatePlayerMove(0, 2);
+                updatePlayerMove(1, 1);
 
-                board[2][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 0);
-                        updatePlayerMove(2, 2);
-                        win(0, 0);
-                        win(1, 2); //win 0,0 or 1,2
-                    }
-                });
-
-                board[0][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 0);
-                        win(2, 0); //win 2,0
-                    }
-                });
-
-                board[0][1].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(0, 1);
-                        win(2, 1); //win 2,1
-                    }
-                });
-
-                board[1][0].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(1, 0);
-                        win(2, 1); //win 2,1
-                    }
-                });
-
-                board[1][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(1, 2);
-                        win(2, 1); //win 2,1
-                    }
-                });
-
-                board[2][2].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 2);
-                        win(2, 1); //win 2,1
-                    }
-                });
+                tieEdge(); //tie
             }
         });
 
         board[2][2].setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                playerRow = 1;
+                playerCol = 1;
                 updateOpponentMove(2, 2);
-                updatePlayerMove(0, 0);
+                updatePlayerMove(1, 1);
+
+                board[0][0].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(0, 0);
+                        updatePlayerMove(0, 1);
+                        tie(); //tie
+                    }
+                });
 
                 board[0][1].setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(0, 1);
                         updatePlayerMove(2, 0);
-                        win(1, 0);
-                        win(0, 2); //win 1,0 or 0,2
+                        tie(); //tie
                     }
                 });
 
@@ -597,9 +508,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
                         updateOpponentMove(1, 0);
-                        updatePlayerMove(0, 2);
-                        win(0, 1);
-                        win(2, 0); //win 0,1 or 2,0
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
                     }
                 });
 
@@ -608,8 +518,16 @@ public class TicTacToeHelp extends AppCompatActivity {
                     public void onClick(View view) {
                         updateOpponentMove(1, 2);
                         updatePlayerMove(0, 2);
-                        win(0, 1);
-                        win(2, 0); //win 0,1 or 2,0
+                        tie(); //tie
+                    }
+                });
+
+                board[2][1].setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        updateOpponentMove(2, 1);
+                        updatePlayerMove(2, 0);
+                        tie(); //tie
                     }
                 });
 
@@ -622,19 +540,8 @@ public class TicTacToeHelp extends AppCompatActivity {
                     }
                 });
 
-                board[2][1].setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        updateOpponentMove(2, 1);
-                        updatePlayerMove(2, 0);
-                        win(1, 0);
-                        win(0, 2); //win 1,0 or 0,2
-                    }
-                });
-
             }
         });
-
     }
 
 }

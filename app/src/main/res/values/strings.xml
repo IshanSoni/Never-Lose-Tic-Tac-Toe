@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Never Lose Tic-Tac-Toe!</string>
+    <string name="app_name">Tic Tac Toe Assist Tool</string>
     <string name="title_activity_tic_tac_toe_help">TicTacToeHelp</string>
     <string name="x">X</string>
     <string name="o">O</string>
@@ -25,4 +25,5 @@
     <string name="tie_opp_edge_endorsed">Planning your next move at center will also prevent your opponent from setting any traps</string>
     <string name="tie_opp_edge_note">Keep blocking until you reach a tie</string>
     <string name="tie_toast">Keep blocking until you reach a tie</string>
+    <string name="ad_id">ca-app-pub-4117140826445508/2240462267</string>
 </resources>
