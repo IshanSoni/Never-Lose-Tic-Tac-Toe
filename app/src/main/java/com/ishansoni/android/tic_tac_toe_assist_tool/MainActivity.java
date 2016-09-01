@@ -14,7 +14,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 
 public class MainActivity extends AppCompatActivity {
@@ -23,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton opponent;
     private Button start;
     private int choice = 0;
-    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

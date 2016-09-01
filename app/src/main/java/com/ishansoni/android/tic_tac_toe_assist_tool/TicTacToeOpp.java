@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
 public class TicTacToeOpp extends AppCompatActivity {
     private Button[][] board;
     private TextView hint;
@@ -104,6 +108,11 @@ public class TicTacToeOpp extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tic_tac_toe_help);
+
+        MobileAds.initialize(getApplicationContext(), "ca-app-pub-4117140826445508/4771466260");
+        AdView mAdView = (AdView) findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
 
         board = new Button[][]{{(Button) findViewById(R.id.button6), (Button) findViewById(R.id.button2), (Button) findViewById(R.id.button7)},
                 {(Button) findViewById(R.id.button5), (Button) findViewById(R.id.button), (Button) findViewById(R.id.button4)},

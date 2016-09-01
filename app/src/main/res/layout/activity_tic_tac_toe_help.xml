@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:ads="http://schemas.android.com/apk/res-auto"
     android:gravity="center"
     android:background="@android:color/white"
     android:orientation="vertical"
@@ -168,5 +169,15 @@
         android:paddingRight="40dp"
         android:paddingLeft="40dp"
         android:layout_centerHorizontal="true"/>
+
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/adView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        ads:adSize="BANNER"
+        ads:adUnitId="@string/ad_id_2">
+    </com.google.android.gms.ads.AdView>
 
 </RelativeLayout>
